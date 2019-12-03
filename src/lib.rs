@@ -25,6 +25,16 @@
 #![deny(warnings)]
 #![cfg_attr(feature = "small-error", feature(extern_types, allocator_api))]
 
+#![cfg_attr(all(feature = "mesalock_sgx",
+                not(target_env = "sgx")), no_std)]
+#![cfg_attr(all(target_env = "sgx", target_vendor = "mesalock"), feature(rustc_private))]
+
+#[cfg(all(feature = "mesalock_sgx", not(target_env = "sgx")))]
+#[macro_use]
+extern crate sgx_tstd as std;
+
+use std::prelude::v1::*;
+
 macro_rules! with_std { ($($i:item)*) => ($(#[cfg(feature = "std")]$i)*) }
 macro_rules! without_std { ($($i:item)*) => ($(#[cfg(not(feature = "std"))]$i)*) }
 
@@ -60,6 +70,7 @@ extern crate failure_derive;
 pub use failure_derive::*;
 
 with_std! {
+    #[cfg(target_env = "sgx")]
     extern crate core;
 
     mod sync_failure;

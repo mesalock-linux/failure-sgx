@@ -1,3 +1,4 @@
+use std::prelude::v1::*;
 use core::fmt::{self, Display};
 
 /// A compatibility wrapper around an error type from this crate.

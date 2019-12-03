@@ -84,7 +84,7 @@ without_backtrace! {
 }
 
 with_backtrace! {
-    extern crate backtrace;
+    extern crate sgx_backtrace as backtrace;
 
     mod internal;
 

@@ -4,7 +4,7 @@ use std::ffi::OsString;
 use std::fmt;
 #[allow(deprecated)] // to allow for older Rust versions (<1.24)
 use std::sync::atomic::{AtomicUsize, ATOMIC_USIZE_INIT, Ordering};
-use std::sync::Mutex;
+use std::sync::SgxMutex;
 
 pub use super::backtrace::Backtrace;
 
@@ -16,7 +16,7 @@ pub(super) struct InternalBacktrace {
 }
 
 struct MaybeResolved {
-    resolved: Mutex<bool>,
+    resolved: SgxMutex<bool>,
     backtrace: UnsafeCell<Backtrace>,
 }
 
@@ -42,7 +42,7 @@ impl InternalBacktrace {
 
         InternalBacktrace {
             backtrace: Some(MaybeResolved {
-                resolved: Mutex::new(false),
+                resolved: SgxMutex::new(false),
                 backtrace: UnsafeCell::new(Backtrace::new_unresolved()),
             }),
         }
