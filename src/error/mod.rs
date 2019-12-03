@@ -1,3 +1,4 @@
+use std::prelude::v1::*;
 use core::fmt::{self, Display, Debug};
 
 use {Causes, Fail};
