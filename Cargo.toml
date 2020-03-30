@@ -14,8 +14,8 @@ version = "0.1.7"
 path = "./failure_derive"
 
 [target.'cfg(not(target_env = "sgx"))'.dependencies]
-sgx_backtrace = { git = "https://github.com/apache/teaclave-sgx-sdk.git", rev = "v1.1.0", optional = true }
-sgx_tstd = { rev = "v1.1.0", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
+sgx_backtrace = { git = "https://github.com/apache/teaclave-sgx-sdk.git", rev = "v1.1.1", optional = true }
+sgx_tstd = { rev = "v1.1.1", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
 
 [workspace]
 #members = [".", "failure_derive"]
